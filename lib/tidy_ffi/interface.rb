@@ -38,7 +38,7 @@ class TidyFFI::Interface
   def clean
     @output = nil
     LibTidy.tidyCleanAndRepair(@doc)
-  end  
+  end
   alias :clean_and_repair :clean
   alias :repair :clean
 
@@ -161,7 +161,7 @@ class TidyFFI::Interface
     private :load_default_options
   end
 
-  # Returns a hash that represents default options for tidy. 
+  # Returns a hash that represents default options for tidy.
   # Key for hash is the option name, value is also a hash...
   # Possible values are:
   # * :type - either :string, :integer, :boolean or :enum
@@ -178,16 +178,17 @@ class TidyFFI::Interface
     spec = default_options[option]
     return false unless spec
 
+    value_downcased = value.to_s.downcase
     case spec[:type]
     when :boolean
-      true == value || false == value || value == 0 || value == 1 || %w(on off true false 0 1 yes no).include?(value.downcase)
+      true == value || false == value || value == 0 || value == 1 || %w(on off true false 0 1 yes no).include?(value_downcased)
     when :integer
       Integer === value || !!(value =~ /^\d+$/)
     when :enum
       if Integer === value
         !!spec[:values][value]
       else
-        spec[:values].include?(value.downcase)
+        spec[:values].include?(value_downcased)
       end
     when :string
       String === value || Symbol === value
