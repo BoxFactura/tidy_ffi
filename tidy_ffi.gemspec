@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = %q{libc@libc.st}
   s.homepage    = %q{http://github.com/libc/tidy_ffi}
 
-  s.rubyforge_project = %q{tidy-ffi}
+  # s.rubyforge_project = %q{tidy-ffi}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
